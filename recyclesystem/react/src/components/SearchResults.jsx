@@ -9,7 +9,10 @@ import client from '../helpers/sanityClient'
 export default function SearchResults() {
    // Leser søketermen fra URL-parameteret ?q=...
   const [searchParams] = useSearchParams()
+  //     ↑ lese params    
   const q = searchParams.get('q') || ''
+    // || '' er en fallback — "hvis verdien ?q... er null i URL-en den returnerer, bruk en tom string i stedet
+    //Dette forhindrer at q er null, noe som kunne krasjet koden lenger ned der q brukes.
 
   // State for søkeresultatene og lastestatus
   const [results, setResults] = useState([])

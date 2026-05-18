@@ -205,6 +205,7 @@ export default function NewProduct({ loggedInUser }) {
           <p>
             <label>
               Ønskes byttet mot:<br />
+              {/* <br /> er en linjeskift-tag i HTML. Den tvinger innholdet som kommer etter til å starte på en ny linje.*/}
               <textarea
                 value={tradeWish}
                 onChange={(e) => setTradeWish(e.target.value)}
@@ -219,10 +220,35 @@ export default function NewProduct({ loggedInUser }) {
         {error && <p className="form-error">{error}</p>}
 
         <p>
-          {/* Knappen deaktiveres og teksten endres mens skjemaet sendes */}
+          {/* Knappen deaktiveres og teksten endres mens skjemaet sendes 
+          submitting er en state i komponenten som starter som false og blir true når skjemaet er i ferd med å sendes til Sanity:
+          Settes til true når innsending starter: setSubmitting(true)
+          Knappen er: 
+            Klikkbar når submitting = false
+            Deaktivert når submitting = true 
+          Dette forhindrer at brukeren trykker knappen flere ganger og sender inn det samme produktet to ganger. 
+          
+          */}
           <button type="submit" disabled={submitting}>
             {submitting ? 'Legger ut…' : 'Legg ut produkt'}
+            {/* bytter teksten på knappen basert på samme state:
+                  submitting = false  →  knappen viser "Legg ut produkt"
+                  submitting = true   →  knappen viser "Legger ut…" */}
           </button>
+
+          {/*Flyten til knapp:
+                  Bruker trykker knappen
+                          ↓
+                  handleSubmit() kjøres
+                          ↓
+                  setSubmitting(true)
+                          ↓
+                  Knappen deaktiveres + tekst endres til "Legger ut…"
+                          ↓
+                  client.create() sender data til Sanity
+                          ↓
+                  Vellykket → navigate() sender bruker til produktsiden 
+          */}
         </p>
       </form>
     </div>

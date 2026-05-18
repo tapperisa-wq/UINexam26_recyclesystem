@@ -17,6 +17,8 @@ export default function Home() {
   useEffect(() => {
     const fetchProducts = async () => {
       // GROQ-spørring som henter to lister i én request (effektivt)
+
+      //[0...5] first five items
       const query = `{
         "forSale": *[_type == "product" && status == "active" && listingType == "sale"]
           | order(_createdAt desc)[0...5]{
@@ -45,8 +47,11 @@ export default function Home() {
           <ul>
             {forSale.map(product => (
               // Hver li trenger en unik key – bruker Sanity sin _id
+              //React krever en unik key på hvert element i en liste. Den brukes internt av React til å holde styr på hvilke elementer som er nye, 
+              //endrede eller fjernet – uten den kan React oppdatere feil element. 
               <li key={product._id}>
                 {/* Link til produktsiden */}
+                {/*<Link> er React Router sin versjon av en vanlig <a>-lenke, men uten at siden lastes på nytt.*/}
                 <Link to={`/product/${product._id}`}>{product.title}</Link>
                 {' — '}{product.price} kr
               </li>
