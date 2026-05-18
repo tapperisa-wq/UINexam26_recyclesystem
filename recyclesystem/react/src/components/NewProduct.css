@@ -1,3 +1,4 @@
+
 .product-form {
   max-width: 480px;
 }
@@ -19,6 +20,7 @@
   border-radius: 4px;
   background: #fff;
   box-sizing: border-box;
+  color: #000;
 }
 
 .product-form input[type="text"]:focus,
