@@ -23,8 +23,6 @@ import NewProduct from './components/NewProduct'
 import SearchResults from './components/SearchResults'
 import './App.css'
 
-
-
 function App() {
 
    // State for innlogget bruker. null betyr at ingen er logget inn (ennå).

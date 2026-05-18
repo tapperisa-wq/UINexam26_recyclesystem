@@ -1,31 +1,46 @@
+// SearchResults.jsx
+// Viser søkeresultater basert på søketermen i URL-en (?q=...).
+// URL: /search?q=søketerm
+
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import client from '../helpers/sanityClient'
 
 export default function SearchResults() {
+   // Leser søketermen fra URL-parameteret ?q=...
   const [searchParams] = useSearchParams()
   const q = searchParams.get('q') || ''
+
+  // State for søkeresultatene og lastestatus
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    // Hvis søketermen er tom, tøm resultatene og avslutt
     if (!q) {
       setResults([])
       return
     }
     const fetchResults = async () => {
       setLoading(true)
+    
+       // GROQ-spørring som søker i tittel OG beskrivelse
+      // $term er en parameter som sendes inn – dette er trygt mot injection
+      // match-operatoren bruker wildcard (*) for delvis treff
+
       const query = `*[_type == "product" && (
         title match $term || description match $term
       )]{
         _id, title, description, listingType, price, tradeWish, status
       } | order(title asc)`
+
+    // *${q}* betyr "inneholder q" (wildcard på begge sider)
       const data = await client.fetch(query, { term: `*${q}*` })
       setResults(data)
       setLoading(false)
     }
     fetchResults()
-  }, [q])
+  }, [q]) // Kjøres på nytt hver gang søketermen i URL-en endres
 
   return (
     <div>
@@ -40,6 +55,7 @@ export default function SearchResults() {
             <li key={product._id}>
               <Link to={`/product/${product._id}`}>{product.title}</Link>
               {' — '}
+              {/* Viser pris for salg, byttekrav for bytte */}
               {product.listingType === 'sale'
                 ? `${product.price} kr`
                 : `Bytte: ${product.tradeWish}`}
