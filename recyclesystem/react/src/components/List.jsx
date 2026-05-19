@@ -17,20 +17,17 @@ export default function List() {
 
       // GROQ-spørring som henter listen med eierinfo og alle produkter
       // products[]-> betyr "hent alle referanser i products-arrayet som fulle dokumenter"
-
-// Henter eierens navn og id via join
-//"owner": owner->{ _id, firstName, lastName },
-
-// Derefererer hvert produkt i listen – [] betyr "for hvert element i arrayet"
-  // "products": products[]->{
-  //_id, title, status, listingType, price, tradeWish
       
     const fetchList = async () => {
       const query = `*[_type == "userList" && _id == $id][0]{
         _id,
         title,
         isPublic,
+
+        // Henter eierens navn og id via join
         "owner": owner->{ _id, firstName, lastName },
+
+        // Derefererer hvert produkt i listen – [] betyr "for hvert element i arrayet"
         "products": products[]->{
           _id, title, status, listingType, price, tradeWish
         }

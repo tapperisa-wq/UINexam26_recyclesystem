@@ -15,6 +15,8 @@ export default function Layout({ loggedInUser }) {
 
       {/* Toppbanner med logo, søkefelt og velkomstmelding */}
       <header className="header">
+        
+        {/* hvis endre logo til link hjem: legg Link rundt Link to="/" */}
         <h1>Gjenbruken</h1>
 
         {/* Søkekomponenten – navigerer til /search?q=... ved søk */}

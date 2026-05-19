@@ -10,8 +10,10 @@ export default function SearchResults() {
    // Leser søketermen fra URL-parameteret ?q=...
   const [searchParams] = useSearchParams()
   //     ↑ lese params    
+  // useSearchParams() lar deg lese og endre det som kommer etter ? i URL-en.
+    // useSearchParams – leser det som kommer etter ?
   const q = searchParams.get('q') || ''
-    // || '' er en fallback — "hvis verdien ?q... er null i URL-en den returnerer, bruk en tom string i stedet
+    // || '' er en fallback — "hvis verdien ?q... er null i URL-en den returnerer, bruk en tom string i stedet ("eller")
     //Dette forhindrer at q er null, noe som kunne krasjet koden lenger ned der q brukes.
 
   // State for søkeresultatene og lastestatus
@@ -24,6 +26,8 @@ export default function SearchResults() {
       setResults([])
       return
     }
+    //stopper hvis den er tom, hvis ikke fortsetter:
+    
     const fetchResults = async () => {
       setLoading(true)
     

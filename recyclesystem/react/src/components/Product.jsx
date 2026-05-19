@@ -24,33 +24,26 @@ export default function Product() {
 
   useEffect(() => {
     // GROQ-spørring som henter ett produkt med tilhørende data via joins (->)
-
-     // Henter URL til bildet via en join til Sanity sin asset-referanse
-        //"imageUrl": image.asset->url,
-
-     // Henter underkategori og dens tilhørende hovedkategori via dobbel join
-        //"subcategory": subcategory->{
-          //title,
-          //"category": category->title
-
-    // Henter eierens data via join – bare det vi trenger å vise
-        //"owner": owner->{
-          //_id, firstName, lastName, email, city
-
+    
     const fetchProduct = async () => {
       const query = `*[_type == "product" && _id == $id][0]{
         _id,
         title,
         description,
+
+        // Henter URL til bildet via en join til Sanity sin asset-referanse
         "imageUrl": image.asset->url,
         status,
         listingType,
         price,
         tradeWish,
+
+        // Henter underkategori og dens tilhørende hovedkategori via dobbel join
         "subcategory": subcategory->{
           title,
           "category": category->title
         },
+        // Henter eierens data via join – bare det vi trenger å vise
         "owner": owner->{
           _id, firstName, lastName, email, city
         }

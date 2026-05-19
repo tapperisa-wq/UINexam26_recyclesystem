@@ -220,6 +220,7 @@ export default function NewProduct({ loggedInUser }) {
         {error && <p className="form-error">{error}</p>}
 
         <p>
+          
           {/* Knappen deaktiveres og teksten endres mens skjemaet sendes 
           submitting er en state i komponenten som starter som false og blir true når skjemaet er i ferd med å sendes til Sanity:
           Settes til true når innsending starter: setSubmitting(true)

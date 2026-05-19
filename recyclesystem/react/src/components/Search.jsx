@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 export default function Search() {
-  // useNavigate lar oss navigere til en annen URL programmatisk
+  // useNavigate lar oss navigere til en annen URL programmatisk, uten at bruker trenger å gjøre noe spesielt (situational)
   const navigate = useNavigate()
 
    // useSearchParams leser URL-parametere – brukes til å fylle søkefeltet
@@ -23,6 +23,7 @@ export default function Search() {
       // Navigerer til søkesiden med søketermen kodet i URL-en
       // encodeURIComponent sørger for at spesialtegn (mellomrom, æøå osv.) håndteres riktig
       navigate(`/search?q=${encodeURIComponent(query.trim())}`)
+      // setQuery('')  // ← legg til denne linjen hvis skal tømme søkefeltet etter knappen trykkes 
     }
   }
 
