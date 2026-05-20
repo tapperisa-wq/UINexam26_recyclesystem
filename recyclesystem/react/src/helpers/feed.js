@@ -169,7 +169,8 @@ async function deleteAllData() {
       //Slett dokumentet med den ID‑en og Vent (await) til slettingen er ferdig før du går videre
       await client.delete(id)
     }
-    //På slutten gi informasjon i konsolen at ting ble sletta og hva ble sletta (kommer melding for hver element som ble sletta)
+    //På slutten gi informasjon i konsolen at ting ble sletta og hva ble sletta 
+    //(kommer melding for hver element som ble sletta)
     console.log(`  ✓ Slettet alle ${type} dokumenter`)
   }
 }

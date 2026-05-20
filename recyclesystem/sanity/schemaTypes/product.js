@@ -70,7 +70,10 @@ const product = {
     },
 
     {
+      //felt-type
       name: 'owner',
+
+      //Tekst over felte
       title: 'Eier',
 
       //felt-type
@@ -146,4 +149,7 @@ const product = {
   ]
 }
 
+//sende videre
 export default product
+
+

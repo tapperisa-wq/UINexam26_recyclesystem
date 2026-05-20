@@ -12,3 +12,6 @@ import userList from "./userList";
 //Eksporterer alle schemas samlet
 export const schemaTypes = [product, category, subcategory, user, userList]
 //Sanity forventer at vi sender en liste som heter schemaTypes, siden denne listen inneholder alle dokumenttypene som skal vises i Sanity Studio
+
+
+
