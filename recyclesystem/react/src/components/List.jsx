@@ -62,6 +62,8 @@ export default function List() {
       <p>{list.isPublic ? 'Offentlig liste' : 'Privat liste'}</p>
 
       <h2>Produkter ({list.products?.length ?? 0})</h2>
+      {/* ?. Betyr: "hent length fra list.products, men bare hvis list.products finnes. Hvis ikke, returner undefined i stedet for å krasje."*/}
+      {/* ?? Betyr: "bruk verdien til venstre, men hvis den er null eller undefined, bruk 0 i stedet." */}
 
       {/* ?. (optional chaining) unngår krasj hvis products er undefined */}
       {!list.products || list.products.length === 0 ? (
@@ -74,7 +76,7 @@ export default function List() {
               {' — '}
               {product.listingType === 'sale'
                 ? `${product.price} kr`
-                : `Bytte: ${product.tradeWish}`}
+                : `Bytte: ${product.tradeWish}`} {/* Sjekker om produktet er til salgs eller bytte og viser riktig tekst*/}
             </li>
           ))}
         </ul>
