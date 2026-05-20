@@ -1,6 +1,7 @@
 // SearchResults.jsx
 // Viser søkeresultater basert på søketermen i URL-en (?q=...).
 // URL: /search?q=søketerm
+// **
 
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'

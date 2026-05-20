@@ -1,6 +1,7 @@
 // Search.jsx
 // Søkefelt i headeren som sender brukeren til /search?q=... ved innsending.
 // Selve søkeresultatene håndteres av SearchResults.jsx.
+// **
 
 import { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
