@@ -10,6 +10,8 @@ export default function Users() {
       const query = `*[_type == "user"] | order(firstName asc){
         _id, firstName, lastName, city
       }`
+      //| order(firstName asc) er GROQ-syntaks fra GROQ‑dokumentasjon som sier sorter alfabetisk etter fornavn (A → Å).
+
       const result = await client.fetch(query)
       setUsers(result)
     }
@@ -28,7 +30,8 @@ export default function Users() {
               <Link to={`/profile/${user._id}`}>
                 {user.firstName} {user.lastName}
               </Link>
-              {user.city && ` — ${user.city}`}
+              {user.city && ` — ${user.city}`} 
+              {/*Hvis venstre side er sant -> vis høyre side som betyr hvis brukeren ha city -> vis den*/}
             </li>
           ))}
         </ul>

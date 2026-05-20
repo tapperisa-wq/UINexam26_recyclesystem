@@ -19,6 +19,7 @@
   border-radius: 4px;
   background: #fff;
   box-sizing: border-box;
+  color: #000; /*leget til kode for mørk modus: hvis nettleser har mørk modus tekst skal ha hvit farge*/
 }
 
 .product-form input[type="text"]:focus,

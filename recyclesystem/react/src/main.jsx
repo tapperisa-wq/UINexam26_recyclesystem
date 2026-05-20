@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
+  //aktiver routing i hele appen
   <BrowserRouter>
     <App />
   </BrowserRouter>,
